@@ -7,15 +7,42 @@ import { Printer, IndianRupee } from 'lucide-react';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+const SEMESTER_PRESET = 21600; // ₹21,600 preset for 6 months (e.g. 30 days × ₹120 × 6)
+
 const StudentMessBill = ({ bills }: { bills: MessBill[] }) => {
   const [selectedMonth, setSelectedMonth] = useState('1');
   const bill = bills.find(b => b.month === parseInt(selectedMonth));
+
+  const totalDeducted = bills.reduce((sum, b) => sum + b.totalAmount, 0);
+  const semesterBalance = SEMESTER_PRESET - totalDeducted;
 
   const handlePrint = () => window.print();
 
   return (
     <div className="max-w-2xl">
       <h1 className="text-2xl font-heading font-bold text-foreground mb-6">Mess Bill</h1>
+
+      {/* Semester Overview */}
+      <Card className="shadow-card mb-6">
+        <CardContent className="py-4">
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-xs text-muted-foreground">Semester Preset</p>
+              <p className="text-lg font-bold text-foreground">₹{SEMESTER_PRESET.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Total Deducted</p>
+              <p className="text-lg font-bold text-foreground">₹{totalDeducted.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Balance</p>
+              <p className={`text-lg font-bold ${semesterBalance >= 0 ? 'text-success' : 'text-destructive'}`}>
+                ₹{semesterBalance.toLocaleString()}
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="mb-6">
         <Select value={selectedMonth} onValueChange={setSelectedMonth}>
@@ -44,7 +71,7 @@ const StudentMessBill = ({ bills }: { bills: MessBill[] }) => {
               <BillRow label="Total Present Days" value={`${bill.totalDaysPresent} days`} />
               <BillRow label="Cost Per Day" value={`₹${bill.costPerDay}`} />
               <div className="border-t border-border my-2" />
-              <BillRow label="Total Amount" value={`₹${bill.totalAmount}`} bold />
+              <BillRow label="Monthly Deduction" value={`₹${bill.totalAmount}`} bold />
             </div>
           </CardContent>
         </Card>
