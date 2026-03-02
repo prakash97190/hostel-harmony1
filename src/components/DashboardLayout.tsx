@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useAuth } from '@/lib/store';
 import { useNavigate } from 'react-router-dom';
-import { UtensilsCrossed, LogOut, LucideIcon } from 'lucide-react';
+import {  LogOut, LucideIcon } from 'lucide-react';
 
 interface Tab {
   id: string;
@@ -29,16 +29,25 @@ const DashboardLayout = ({ tabs, activeTab, onTabChange, children }: Props) => {
   return (
     <div className="min-h-screen flex bg-background">
       {/* Sidebar */}
-      <aside className="w-64 gradient-sidebar flex flex-col shrink-0 hidden md:flex">
-        <div className="p-6 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl gradient-accent flex items-center justify-center">
-            <UtensilsCrossed className="w-5 h-5 text-accent-foreground" />
-          </div>
-          <div>
-            <h2 className="font-heading font-bold text-sidebar-foreground text-sm">Mess Manager</h2>
-            <p className="text-xs text-sidebar-foreground/60 capitalize">{user?.role} Panel</p>
-          </div>
-        </div>
+      <aside className="w-64 gradient-sidebar flex flex-col shrink-0  md:flex">
+       <div className="p-6 flex items-center gap-3">
+  <div className="inline-flex items-center justify-center w-20 h-19 rounded-xl bg-white">
+    <img
+      src="/nitkkr.png"
+      alt="NIT KKR Logo"
+      className="w-21 h-15 object-contain rounded-lg"
+    />
+  </div>
+
+  <div>
+    <h2 className="font-heading font-bold text-sidebar-foreground text-sm">
+      Mess Management System
+    </h2>
+    <p className="text-xs text-sidebar-foreground/60 capitalize">
+      {user?.role} Panel
+    </p>
+  </div>
+</div>
 
         <nav className="flex-1 px-3 py-2 space-y-1">
           {tabs.map(tab => {
@@ -84,10 +93,14 @@ const DashboardLayout = ({ tabs, activeTab, onTabChange, children }: Props) => {
       {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-            <UtensilsCrossed className="w-4 h-4 text-primary-foreground" />
-          </div>
-          <span className="font-heading font-bold text-sm">Mess Manager</span>
+          <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
+  <img
+    src="/nitkkr.png"
+    alt="NIT KKR Logo"
+    className="w-6 h-6 object-contain"
+  />
+</div>
+          <span className="font-heading font-bold text-sm">Mess Management System</span>
         </div>
         <button onClick={handleLogout} className="text-muted-foreground">
           <LogOut className="w-5 h-5" />
