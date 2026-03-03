@@ -10,7 +10,10 @@ const connectDB = require('./config/db');
 const app = express();
 
 // Middleware
-app.use(cors()); // Allows requests from React frontend (default http://localhost:5173) .use is used in middle ware connection or configure purpose 
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  credentials: true
+})); // Allows requests from React frontend (default http://localhost:5173) .use is used in middle ware connection or configure purpose 
 app.use(express.json());
 
 connectDB()
