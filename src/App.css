@@ -1,42 +1,68 @@
+/* Root container styling for the main React app */
 #root {
   max-width: 1280px;
+  /* Maximum width of the application */
   margin: 0 auto;
+  /* Centers the content horizontally */
   padding: 2rem;
+  /* Adds spacing inside the container */
   text-align: center;
+  /* Centers the text */
 }
 
+/* Styling for logo images */
 .logo {
   height: 6em;
+  /* Sets the logo height */
   padding: 1.5em;
+  /* Adds spacing around the logo */
   will-change: filter;
+  /* Optimizes browser rendering for filter changes */
   transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  /* Smooth transition effect when filter changes */
 }
 
+/* Hover effect for the logo */
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+  /* Adds glowing shadow on hover */
+}
+
+/* Special hover effect for React logo */
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+  /* React-themed glow color */
+}
+
+/* Keyframe animation for rotating the logo */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
+    /* Starting rotation */
   }
+
   to {
     transform: rotate(360deg);
+    /* Full rotation */
   }
 }
 
+/* Apply animation only if user does not prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
+    /* Infinite rotation animation every 20 seconds */
   }
 }
 
+/* Styling for card components */
 .card {
   padding: 2em;
+  /* Adds spacing inside card */
 }
 
+/* Styling for documentation text */
 .read-the-docs {
   color: #888;
+  /* Light gray text color */
 }

@@ -1,121 +1,206 @@
+/* Import Google Fonts used in the project
+   Inter → Used for body text
+   Space Grotesk → Used for headings */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
+/* Tailwind base styles (reset + default styles) */
 @tailwind base;
+
+/* Tailwind component layer */
 @tailwind components;
+
+/* Tailwind utility classes */
 @tailwind utilities;
 
+
+/* ================= BASE THEME VARIABLES ================= */
 @layer base {
+
+  /* Root theme variables (Light Mode) */
   :root {
+
+    /* Main background and text colors */
     --background: 210 20% 98%;
     --foreground: 220 30% 12%;
 
+    /* Card component colors */
     --card: 0 0% 100%;
     --card-foreground: 220 30% 12%;
 
+    /* Popover component colors */
     --popover: 0 0% 100%;
     --popover-foreground: 220 30% 12%;
 
+    /* Primary brand color */
     --primary: 220 55% 22%;
     --primary-foreground: 210 40% 98%;
 
+    /* Secondary UI color */
     --secondary: 210 25% 93%;
     --secondary-foreground: 220 30% 20%;
 
+    /* Muted colors for subtle UI elements */
     --muted: 210 20% 95%;
     --muted-foreground: 215 16% 47%;
 
+    /* Accent color (used for highlights) */
     --accent: 38 92% 50%;
     --accent-foreground: 220 55% 12%;
 
+    /* Destructive color (used for errors/danger actions) */
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
+    /* Border, input, and focus ring colors */
     --border: 214 25% 89%;
     --input: 214 25% 89%;
     --ring: 220 55% 22%;
 
+    /* Default border radius for UI elements */
     --radius: 0.625rem;
 
+    /* Custom colors for statuses */
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
+
     --warning: 38 92% 50%;
     --warning-foreground: 220 55% 12%;
+
+    /* Leave status color (used in attendance/leave UI) */
     --leave: 48 96% 53%;
     --leave-foreground: 220 30% 12%;
 
+    /* Sidebar color scheme */
     --sidebar-background: 220 55% 18%;
     --sidebar-foreground: 210 25% 90%;
+
     --sidebar-primary: 38 92% 50%;
     --sidebar-primary-foreground: 220 55% 12%;
+
     --sidebar-accent: 220 50% 26%;
     --sidebar-accent-foreground: 210 25% 95%;
+
     --sidebar-border: 220 45% 28%;
     --sidebar-ring: 38 92% 50%;
 
+    /* Fonts used in the project */
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
   }
 
+
+  /* ================= DARK MODE VARIABLES ================= */
+
   .dark {
+
+    /* Background and text colors for dark mode */
     --background: 220 30% 8%;
     --foreground: 210 25% 93%;
+
+    /* Card colors */
     --card: 220 30% 12%;
     --card-foreground: 210 25% 93%;
+
+    /* Popover colors */
     --popover: 220 30% 12%;
     --popover-foreground: 210 25% 93%;
+
+    /* Primary theme color in dark mode */
     --primary: 38 92% 50%;
     --primary-foreground: 220 55% 12%;
+
+    /* Secondary colors */
     --secondary: 220 30% 18%;
     --secondary-foreground: 210 25% 90%;
+
+    /* Muted colors */
     --muted: 220 25% 16%;
     --muted-foreground: 215 16% 60%;
+
+    /* Accent color */
     --accent: 38 85% 55%;
     --accent-foreground: 220 55% 12%;
+
+    /* Error colors */
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
+
+    /* Borders and inputs */
     --border: 220 25% 20%;
     --input: 220 25% 20%;
     --ring: 38 92% 50%;
+
+    /* Sidebar dark theme */
     --sidebar-background: 220 30% 6%;
     --sidebar-foreground: 210 25% 85%;
+
     --sidebar-primary: 38 92% 50%;
     --sidebar-primary-foreground: 220 55% 12%;
+
     --sidebar-accent: 220 30% 14%;
     --sidebar-accent-foreground: 210 25% 90%;
+
     --sidebar-border: 220 25% 16%;
     --sidebar-ring: 38 92% 50%;
   }
 }
 
+
+/* ================= GLOBAL BASE STYLES ================= */
+
 @layer base {
+
+  /* Apply border color globally */
   * {
     @apply border-border;
   }
 
+  /* Body styling */
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Headings use a different font */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
 }
 
+
+/* ================= CUSTOM UTILITY CLASSES ================= */
+
 @layer utilities {
+
+  /* Primary gradient used for buttons and highlights */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(239, 37%, 32%), hsl(257, 8%, 36%));
+    background: linear-gradient(135deg, hsl(11, 72%, 55%), hsl(20, 8%, 36%));
   }
+
+  /* Accent gradient (used for icons or profile avatars) */
   .gradient-accent {
     background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(33, 5%, 65%));
   }
+
+  /* Sidebar gradient background */
   .gradient-sidebar {
-    background: linear-gradient(180deg, hsl(216, 3%, 71%), hsl(0, 0%, 0%));
+    background: linear-gradient(180deg, hsl(0, 66%, 32%), hsl(32, 90%, 38%));
   }
+
+  /* Soft shadow used for cards */
   .shadow-card {
-    box-shadow: 0 1px 3px 0 hsl(220 30% 12% / 0.06), 0 1px 2px -1px hsl(220 30% 12% / 0.06);
+    box-shadow: 0 1px 3px 0 hsl(220 30% 12% / 0.06),
+      0 1px 2px -1px hsl(220 30% 12% / 0.06);
   }
+
+  /* Shadow used when hovering over cards */
   .shadow-card-hover {
-    box-shadow: 0 10px 15px -3px hsl(220 30% 12% / 0.08), 0 4px 6px -4px hsl(220 30% 12% / 0.06);
+    box-shadow: 0 10px 15px -3px hsl(220 30% 12% / 0.08),
+      0 4px 6px -4px hsl(220 30% 12% / 0.06);
   }
 }
